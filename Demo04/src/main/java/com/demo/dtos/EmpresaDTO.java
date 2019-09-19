@@ -7,8 +7,6 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 public class EmpresaDTO {
 	
-	private Long id;
-	
 	@NotEmpty(message = "Razão Social não pode ser vazia")
 	@Length(min = 5, max = 200, message = "Razão Social deve conter entre 5 e 200 caracteres.")
 	private String razaoSocial;
@@ -17,16 +15,8 @@ public class EmpresaDTO {
 	@CNPJ(message = "CNPJ inválido")
 	private String cnpj;
 	
-	//Construtor
 	public EmpresaDTO() { }
 	
-	//GETTERs and SETTERs
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
@@ -42,7 +32,7 @@ public class EmpresaDTO {
 
 	@Override
 	public String toString() {
-		return "EmpresaDTO [id=" + id + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + "]";
+		return "EmpresaDTO [razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + "]";
 	}
 	
 }

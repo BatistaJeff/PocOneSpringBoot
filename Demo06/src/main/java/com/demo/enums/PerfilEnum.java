@@ -1,8 +1,9 @@
 package com.demo.enums;
 
 public enum PerfilEnum {
-	ROLE_ADMIN("Administrador",1),
-	ROLE_USUARIO("Comum",2);
+	
+	ROLE_ADMIN("ROLE_ADMIN",1),
+	ROLE_USUARIO("ROLE_USUARIO",2);
 
 	private int codigo;
 	private String descricao;

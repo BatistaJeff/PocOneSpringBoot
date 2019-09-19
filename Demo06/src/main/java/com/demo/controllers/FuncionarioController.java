@@ -10,36 +10,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.dtos.EmpresaDTO;
-import com.demo.entity.Empresa;
+import com.demo.dtos.FuncionarioDTO;
+import com.demo.entity.Funcionario;
 import com.demo.responses.Response;
-import com.demo.services.EmpresaService;
+import com.demo.services.FuncionarioService;
 
 @RestController
-@RequestMapping(path = "/api/empresa")
-public class EmpresaController {
-
-	@Autowired
-	private EmpresaService service;
-	Empresa empresa = null;
+@RequestMapping(path = "/api/funcionario")
+public class FuncionarioController {
 	
-	@PostMapping 
-	public ResponseEntity<Response<EmpresaDTO>> cadastrar(@Valid @RequestBody EmpresaDTO empresaDTO, BindingResult result) {
+	@Autowired
+	private FuncionarioService service; 
+
+
+	@PostMapping
+	public ResponseEntity<Response<FuncionarioDTO>> cadastrar(@Valid @RequestBody FuncionarioDTO funcionarioDTO, BindingResult result) {
 		
-		Response<EmpresaDTO> response = new Response<EmpresaDTO>();
+		Response<FuncionarioDTO> response = new Response<FuncionarioDTO>();
+		Funcionario funcionario = null;
 		
 		if(result.hasErrors()) {
 			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		} else {
 			try {
-				Empresa empresa = this.service.cadastrarDTO(empresaDTO);
+				funcionario = this.service.cadastrarDTO(funcionarioDTO);
 			} catch (Exception e) {
-				e.printStackTrace();
+				response.getErrors().add(e.getMessage().toString());
 			}
 		}
-		response.setData(empresaDTO);
-
+		response.setData(funcionarioDTO);
+		
 		return ResponseEntity.ok(response);
 	}
+	
+	
+	
 }

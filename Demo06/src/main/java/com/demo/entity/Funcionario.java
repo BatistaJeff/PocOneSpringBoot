@@ -63,12 +63,6 @@ public class Funcionario implements Serializable {
 	@Column(name = "data_atualizacao", nullable = false)
 	private Date dataAtualizacao;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Empresa empresa;
-	
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Lancamento> lancamentos;
-	
 	public Funcionario() {	}
 
 	@PrePersist
@@ -163,65 +157,10 @@ public class Funcionario implements Serializable {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public List<Lancamento> getLancamentos() {
-		return lancamentos;
-	}
-
-	public void setLancamentos(List<Lancamento> lancamentos) {
-		this.lancamentos = lancamentos;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
-	@Override
-	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
-				+ ", valorHora=" + valorHora + ", qtdHrTrabalhoDia=" + qtdHrTrabalhoDia + ", qtdHrAlmoco=" + qtdHrAlmoco
-				+ ", perfil=" + perfil + ", dataCriacao=" + dataCriacao + ", dataAtualizacao=" + dataAtualizacao
-				+ ", empresa=" + empresa + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Funcionario other = (Funcionario) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
 	
 	
 }
