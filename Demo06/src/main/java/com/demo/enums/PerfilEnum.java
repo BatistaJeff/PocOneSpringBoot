@@ -14,7 +14,7 @@ public enum PerfilEnum {
 	}
 	
 	public static PerfilEnum getByCodigo(int cod) {
-		if(cod >= 0 || cod > 2) {
+		if(cod < 1 || cod > 2) {
 			return null;
 		}
 		for(PerfilEnum perfil : PerfilEnum.values()) {
